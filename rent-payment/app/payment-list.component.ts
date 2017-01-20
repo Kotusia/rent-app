@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'payment-list',
   template: `
+  <div class="col-md-10">
     <h2> {{title}}</h2>
     <div>
       <table>
@@ -26,6 +27,7 @@ import { Component } from '@angular/core';
         </tr>
       </table>
     </div>
+  </div>
 `,
 })
 export class PaymentListComponent  {
