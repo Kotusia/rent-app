@@ -1,0 +1,23 @@
+<div class="col-md-10">
+  <h2> {{title}}</h2>
+  <div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Surname</th>
+          <th>Payment Amount</th>
+          <th>Date of Payment</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor='let payment of payments'>
+          <td>{{payment.payerName}}</td>
+          <td>{{payment.payerSurname}}</td>
+          <td>{{payment.paymentAmount}}</td>
+          <td>{{payment.paymentDate}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+[{
+  "paymentId": 1,
+  "payerName": "Stefan",
+  "payerSurname": "Kot",
+  "paymentAmount": 500.00,
+  "paymentDate": "January 12, 2017",
+  "division": [{
+    "description": "Rent",
+    "value": 200.00
+  }, {
+    "description": "Water",
+    "value": 200.00
+  }, {
+    "description": "Garbage collection",
+    "value": 100.00
+  }]
+}, {
+  "paymentId": 2,
+  "payerName": "Stefania",
+  "payerSurname": "Mysz",
+  "paymentAmount": 300,
+  "paymentDate": "January 16, 2017"
+}, {
+  "paymentId": 3,
+  "payerName": "Gertruda",
+  "payerSurname": "Wiewiorka",
+  "paymentAmount": 700,
+  "paymentDate": "January 20, 2017"
+}]
