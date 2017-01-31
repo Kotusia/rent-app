@@ -1,45 +1,47 @@
-import {
-  beforeEach,
-  beforeEachProviders,
-  describe,
-  expect,
-  it,
-  inject,
-} from '@angular/core/testing';
-import { ComponentFixture, TestComponentBuilder } from '@angular/compiler/testing';
-import { Component } from '@angular/core';
-import { By } from '@angular/platform-browser';
-import { View2Component } from './view2.component';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { By }              from '@angular/platform-browser';
+import { DebugElement }    from '@angular/core';
 
-describe('Component: View2', () => {
-  let builder: TestComponentBuilder;
+import { NewPaymentComponent } from './new-payment.component';
 
-  beforeEachProviders(() => [View2Component]);
-  beforeEach(inject([TestComponentBuilder], function (tcb: TestComponentBuilder) {
-    builder = tcb;
+describe('NewPaymentComponent (templateUrl)', () => {
+
+  let comp:    NewPaymentComponent;
+  let fixture: ComponentFixture<NewPaymentComponent>;
+  let de:      DebugElement;
+  let el:      HTMLElement;
+
+  // async beforeEach
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [ NewPaymentComponent ],
+    })
+    .compileComponents();
   }));
 
-  it('should inject the component', inject([View2Component],
-      (component: View2Component) => {
-    expect(component).toBeTruthy();
-  }));
+  beforeEach(() => {
+    fixture = TestBed.createComponent(NewPaymentComponent);
 
-  it('should create the component', inject([], () => {
-    return builder.createAsync(View2ComponentTestController)
-      .then((fixture: ComponentFixture<any>) => {
-        let query = fixture.debugElement.query(By.directive(View2Component));
-        expect(query).toBeTruthy();
-        expect(query.componentInstance).toBeTruthy();
-      });
-  }));
+    comp = fixture.componentInstance; // NewPaymentComponent test instance
+
+    // query for the title <h1> by CSS element selector
+    de = fixture.debugElement.query(By.css('h1'));
+    el = de.nativeElement;
+  });
+
+  it('no title in the DOM until manually call `detectChanges`', () => {
+    expect(el.textContent).toEqual('');
+  });
+
+  it('should display original title', () => {
+    fixture.detectChanges();
+    expect(el.textContent).toContain(comp.title);
+  });
+
+  it('should display a different test title', () => {
+    comp.title = 'Test Title';
+    fixture.detectChanges();
+    expect(el.textContent).toContain('Test Title');
+  });
+
 });
-
-@Component({
-  selector: 'test',
-  template: `
-    <app-view2></app-view2>
-  `,
-  directives: [View2Component]
-})
-class View2ComponentTestController {
-}
